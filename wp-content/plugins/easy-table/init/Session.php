@@ -1,4 +1,6 @@
 <?php
+namespace EasyTable;
+
 session_start();
 class Session
 {

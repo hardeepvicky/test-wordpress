@@ -1,4 +1,4 @@
-<div class="easy-table ">
+<div class="easy-table">
     <h1>
         Easy Tables Summary
     </h1>

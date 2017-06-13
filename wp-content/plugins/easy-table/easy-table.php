@@ -7,7 +7,7 @@ Plugin URI:  http://www.techformation.co.in/
 Author:      Hardeep Singh
 Author URI:  http://www.techformation.co.in/
 License:     GPL v2 or later
-
+Created: 13-June-2017
 Copyright 2009-2017 Hardeep Singh
 
 This program is free software; you can redistribute it and/or modify

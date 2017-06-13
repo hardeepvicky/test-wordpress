@@ -1,5 +1,5 @@
 <?php
-require_once dirname(__FILE__) . "/Session.php";
+namespace EasyTable;
 
 class Controller 
 {
@@ -96,7 +96,15 @@ class Controller
     
     public function run()
     {
+        $public_url = \EasyTable\Config::BASE_URL;
+        
+        $js_url = \EasyTable\Config::JS_URL;
+        
+        $css_url = \EasyTable\Config::JS_URL;
+        
         $request = $this->getRequestFile();
+        
+        $Form = new \EasyTable\Form;
         
         if ($request)
         {
@@ -115,5 +123,6 @@ class Controller
         {
             require_once $view;
         }
+        
     }
 }
