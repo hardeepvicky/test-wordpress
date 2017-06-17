@@ -94,18 +94,33 @@ class Controller
         return $this->view_path . "/" . $this->view . ".php";
     }
     
-    public function run()
+    public function run($params = array())
     {
-        $public_url = \EasyTable\Config::BASE_URL;
+        if($_GET)
+        {
+            $params = array_merge_recursive($params, $_GET);
+        }
+        /**
+         * declaring variable required in all views
+         */
+        $base_url = \EasyTable\Config::BASE_URL;
+        
+        $public_url = \EasyTable\Config::PUBLIC_URL;
         
         $js_url = \EasyTable\Config::JS_URL;
         
-        $css_url = \EasyTable\Config::JS_URL;
-        
-        $request = $this->getRequestFile();
+        $css_url = \EasyTable\Config::CSS_URL;
         
         $Form = new \EasyTable\Form;
         
+        $wpExtend = new \EasyTable\WPExtend;
+
+        $Util = new \EasyTable\Util;
+        
+        $Session = new \EasyTable\Session("easy_table");
+        
+        $request = $this->getRequestFile();
+
         if ($request)
         {
             require_once $this->getRequestFile();   
@@ -123,6 +138,5 @@ class Controller
         {
             require_once $view;
         }
-        
     }
 }

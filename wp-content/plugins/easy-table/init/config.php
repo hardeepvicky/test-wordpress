@@ -15,26 +15,31 @@ class Config
     const RELATION_HAVE_PARENT = "parent";
     const RELATION_HAVE_CHILDREN = "children";
     
+    const FIELD_TYPE_IMAGE = "image";
+    
     public static $table_realtions = array(
-        self::RELATION_HAVE_CHILDREN => "Have Parent",
+        self::RELATION_HAVE_PARENT => "Have Parent",
         self::RELATION_HAVE_CHILDREN => "Have Children",
     );
     
-    public static function getTableList()
+    public static $field_types = array(
+        "text" => "Text Or Number",
+        "select" => "Dropdown",
+        "checkbox" => "Checkbox",
+        "image" => "Image",
+        "file" => "File",
+    );
+    
+    public static function plugin_admin_url($params)
     {
-        global $wpdb;
-        $data = self::objToArray($wpdb->get_results("show tables;"));
+        $url = "/wp-admin/admin.php?";
         
         $list = array();
-        foreach($data as $obj)
+        foreach($params as $k => $v)
         {
-            $name = reset($obj);
-            if (strpos($name, "wp_") === false)
-            {
-                $list[] = $name;
-            }
+            $list[] = $k . "=" . $v;
         }
         
-        return $list;
+        return $url . implode("&", $list);
     }
 }

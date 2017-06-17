@@ -176,7 +176,7 @@ class Util
      * @param String $valid_chars
      * @return string
      */
-    function getRandomString($length, $valid_chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890")
+    public static function getRandomString($length, $valid_chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890")
     {
         $random_string = "";
         $num_valid_chars = strlen($valid_chars);
@@ -195,5 +195,31 @@ class Util
         }
         return $random_string;
     }
+    
+    public static function getFormArrayToCurlArray($data, $pre = "")
+    {
+        $ret = array();
+        foreach($data as $k => $v)
+        {
+            if ($pre)
+            {
+                $key = $pre . "[$k]";
+            }
+            else
+            {
+                $key = $k;
+            }
 
+            if (is_array($v))
+            {
+                $ret = array_merge($ret, self::getFormArrayToCurlArray($v, $key));
+            }
+            else
+            {
+                $ret[$key] = $v;
+            }
+        }
+        
+        return $ret;
+    }
 }

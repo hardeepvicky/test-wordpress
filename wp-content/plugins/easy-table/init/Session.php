@@ -1,48 +1,68 @@
 <?php
 namespace EasyTable;
 
-session_start();
+if ( !session_id() ) {
+    session_start();
+}
+
 class Session
 {
-    public static function write($key, $val)
+    public $group;
+    
+    public function __construct($group_key)
     {
-        $_SESSION[$key] = $val;
+        $this->group = $group_key;
     }
     
-    public static function read($key = null)
+    public function write($key, $val)
+    {
+        $_SESSION[$this->group][$key] = $val;
+    }
+    
+    public function clear($key)
+    {
+        unset($_SESSION[$this->group][$key]);
+    }
+    
+    public function clearGroup()
+    {
+        unset($_SESSION[$this->group]);
+    }
+    
+    public function read($key = null)
     {
         if ($key)
         {
-            return isset($_SESSION[$key]) ? $_SESSION[$key] : false;
+            return isset($_SESSION[$this->group][$key]) ? $_SESSION[$this->group][$key] : false;
         }
         else
         {
-            return $_SESSION;
+            return $_SESSION[$this->group];
         }
     }
     
-    public static function has($key)
+    public function has($key)
     {
-        return isset($_SESSION[$key]) ? true : false;
+        return isset($_SESSION[$this->group][$key]) ? true : false;
     }
     
-    public static function hasFlash($key)
+    public function hasFlash($key)
     {
-        return self::has("flash." . $key);
+        return $this->has("flash." . $key);
     }
     
     public function writeFlash($key, $val)
     {
-        self::write("flash." . $key, $val);
+        $this->write("flash." . $key, $val);
     }
     
     public function readFlash($key)
     {
         $key = "flash." . $key;
         
-        $msg = self::read($key);
+        $msg = $this->read($key);
         
-        unset($_SESSION[$key]);
+        $this->clear($key);
         
         return $msg;
     }

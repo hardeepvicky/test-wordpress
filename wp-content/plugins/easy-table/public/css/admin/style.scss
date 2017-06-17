@@ -1,0 +1,87 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Jun 14, 2017, 11:03:41 AM
+    Author     : Tech
+*/
+
+$color-red: #E26A6A;
+$color-blue: #4B77BE;
+
+.easy-table
+{
+    tr.center td,
+    tr.center th,
+    .center
+    {
+        text-align: center;
+        vertical-align: middle; 
+    }
+    
+    .font-icon
+    {
+        font-size: 20px;
+    }
+    
+    .form-table th,
+    .form-table td
+    {
+        padding : 10px 7px;
+    }
+    
+    .color-red
+    {
+        color : $color-red;
+    }
+    
+    .bg-red
+    {
+        background-color: $color-red;
+    }
+    
+    .red
+    {
+        color : $color-red;
+        background-color: #FFF;
+    }
+    
+    .red-invert
+    {
+        color : #FFF;
+        background-color: $color-red;
+    }
+    
+    .color-blue
+    {
+        color : $color-blue;
+    }
+    
+    .bg-blue
+    {
+        background-color: $color-blue;
+    }
+    
+    .blue
+    {
+        color : $color-blue;
+        background-color: #FFF;
+    }
+    
+    .blue-invert
+    {
+        color : #FFF;
+        background-color: $color-blue;
+    }
+    
+    /*
+    * Inputs
+    */
+    input[type='text'], select
+    {
+        max-width: 30em;
+        width : 100%;
+    }
+}

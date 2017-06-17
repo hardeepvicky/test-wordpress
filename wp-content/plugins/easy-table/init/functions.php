@@ -13,3 +13,23 @@ if (!function_exists ('debug'))
         echo "</pre>";
     }
 }
+
+function easy_table_get_list($data, $key, $value)
+{
+    if (!is_array($data) || empty($data))
+    {
+        return array();
+    }
+    
+    $list = array();
+    
+    foreach($data as $record)
+    {
+        if (isset($record[$key]) && isset($record[$value]))
+        {
+            $list[$record[$key]] = $record[$value];
+        }
+    }
+    
+    return $list;
+}
